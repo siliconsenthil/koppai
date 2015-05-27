@@ -1,0 +1,16 @@
+ACTION=="add", SUBSYSTEM=="usb", SYSFS{idVendor}=="148f", SYSFS{idProduct}=="5370", RUN+="/root/on-wifi-usb-plugged.sh"
+
+
+
+Bus 001 Device 002: ID 148f:5370 Ralink Technology, Corp. RT5370 Wireless Adapter
+
+
+ACTION=="add", SUBSYSTEM=="usb", SYSFS{idVendor}=="148f", SYSFS{idProduct}=="5370", RUN+="/root/on-wifi-usb-plugged.sh"
+
+
+
+date >> /tmp/usb-network-triggered
+/etc/init.d/networking restart
+
+
+ rsync -r . root@10.16.1.214:robot
