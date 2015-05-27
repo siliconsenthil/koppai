@@ -46,9 +46,11 @@ wsServer.on('request', function(request) {
             console.log('Received Command: ' + command);
 
             if(command === 'F')
-              robot.moveForward();
-            if(command === 'B')
-              robot.moveBackward();
+              robot.execute('forward');
+            if(command === 'R')
+              robot.execute('reverse');
+            if(command === 'S')
+              robot.execute('stop');
 
             connection.sendUTF('ACK: ' + command);
         } else if (message.type === 'binary') {

@@ -2,13 +2,13 @@
   "name": "koppai-robot",
   "version": "0.0.1",
   "dependencies": {
+    "lodash": "^3.9.3",
     "websocket": "^1.0.18"
   },
   "engines": {
     "node": "0.10.x"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "node app. js"
   }

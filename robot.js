@@ -1,15 +1,61 @@
 var b = require('bonescript');
-var outputPin1 = "P8_13";
-var outputPin2 = "P8_7";
-var on = 0;
-var off = 1;
+var _ = require('lodash');
+var wheel = require('./wheel');
 
-b.pinMode(outputPin1, 'out');
-b.pinMode(outputPin2, 'out');
-b.digitalWrite(outputPin1, off);
-b.digitalWrite(outputPin2, off);
+var fl1 = "P8_7";
+var fl2 = "P8_8";
 
-exports.moveForward = function(){
+var fr1 = "P8_9";
+var fr2 = "P8_10";
+
+var bl1 = "P8_11";
+var bl2 = "P8_12";
+
+var br1 = "P8_13";
+var br2 = "P8_14";
+
+_.each([fl1, fl2, fr1, fr2, bl1, bl2, br1, br2], function(pin){
+  b.pinMode(pin, 'out');
+});
+
+var directionMap = {
+  forward: 'FRRF',
+  reverse: 'RFFR',
+  stop: 'SSSS'
+}
+
+var flWheel = wheel.build(fl1, fl2);
+var frWheel = wheel.build(fr1, fr2);
+var blWheel = wheel.build(bl1, bl2);
+var brWheel = wheel.build(br1, br2);
+
+var wheels = [flWheel, frWheel, blWheel, brWheel];
+
+_.each(wheels, function(wheel){
+  wheel.stop();
+});
+
+console.log(wheels);
+
+
+exports.execute = function(direction){
+  _.each(directionMap[direction].split(''), function(command, index){
+    console.log(wheels[index], command);
+    if(command == 'F') {
+      wheels[index].forward();
+    }
+
+    if(command == 'R') {
+      wheels[index].forward();
+    }
+
+    if(command == 'S') {
+      wheels[index].stop();
+    }
+  });
+}
+
+exports.moveForward = function(pin1, pin2){
   b.digitalWrite(outputPin1, on);
   setInterval(function(){
     b.digitalWrite(outputPin1, off);
