@@ -13,14 +13,14 @@ date >> /tmp/usb-network-triggered
 /etc/init.d/networking restart
 
 
- rsync -r . root@10.16.1.214:robot
+rsync -vv -r --progress --exclude node_modules --exclude .git . root@10.134.124.148:robot
 
 
 wifi IP: 10.134.124.148
 
 To test from browser
 
-ws = new WebSocket("ws://192.168.7.2:8081/", 'echo-protocol')
+ws = new WebSocket("ws://10.134.124.148:8081/", 'echo-protocol')
 ws.onmessage = function(a){console.log(a)}
 ws.send('F')
 

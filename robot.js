@@ -19,8 +19,8 @@ _.each([fl1, fl2, fr1, fr2, bl1, bl2, br1, br2], function(pin){
 });
 
 var directionMap = {
-  forward: 'FRRF',
-  reverse: 'RFFR',
+  forward: 'FFFF',
+  reverse: 'RRRR',
   stop: 'SSSS'
 }
 
@@ -46,7 +46,7 @@ exports.execute = function(direction){
     }
 
     if(command == 'R') {
-      wheels[index].forward();
+      wheels[index].reverse();
     }
 
     if(command == 'S') {
