@@ -2,8 +2,9 @@
   "name": "koppai-robot",
   "version": "0.0.1",
   "dependencies": {
-    "lodash": "^3.9.3",
-    "websocket": "^1.0.18"
+    "lodash": "~3.9.3",
+    "websocket": "~1.0.18",
+    "raspi-llio": "~1.0.4"
   },
   "engines": {
     "node": "0.10.x"
